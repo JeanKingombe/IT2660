@@ -11,10 +11,10 @@ public class Main {
     Lab1 lab = new Lab1();
   
 
-// Create an array with the specified values
+// An array
 int[] array = {5, 9, 3, 12, 7, 3, 11, 5};
 
-// Output the array in order using a while loop
+// Output the array in order 
 System.out.println("Array in order:");
 int i = 0;
 while (i < array.length) {
@@ -23,20 +23,16 @@ while (i < array.length) {
 }
 System.out.println();
 
-// Output the array in reverse using a for loop
+// reverse using a for loop
 System.out.println("Array in reverse:");
 for (int j = array.length - 1; j >= 0; j--) {
   System.out.print(array[j] + " ");
 }
 System.out.println();
 
-// Output the first and last values of the array
+
 System.out.println("First value: " + array[0]);
 System.out.println("Last value: " + array[array.length - 1]);
-
-// Call the methods created in Lab1
-System.out.println("Maximum of 5 and 9: " + lab.max(5, 9));
-System.out.println("Minimum of 5 and 9: " + lab.min(5, 9));
 System.out.println("Sum of array: " + lab.sum(array));
 System.out.println("Average of array: " + lab.average(array));
 System.out.println("Maximum value in array: " + lab.max(array));
@@ -53,7 +49,7 @@ class Lab1 {
     return ++num;
   }
 
-  // Method to return the maximum of two integers
+  // return the maximum of two integers
   public static int max(int a, int b) {
     if (a > b) {
       return a;
@@ -62,7 +58,7 @@ class Lab1 {
     }
   }
 
-  // Method to return the minimum of two integers
+  //  return the minimum of two integers
   public static int min(int a, int b) {
     if (a < b) {
       return a;
@@ -71,7 +67,7 @@ class Lab1 {
     }
   }
 
-  // Method to return the sum of an array of integers
+  //  return the sum of an array 
   public static int sum(int[] numbers) {
     int total = 0;
     for (int num : numbers) {
@@ -80,13 +76,12 @@ class Lab1 {
     return total;
   }
 
-  // Method to return the average of an array of integers
+  // return the average 
   public static double average(int[] numbers) {
-    int total = sum(numbers); // Reusing the sum method
+    int total = sum(numbers); 
     return (double) total / numbers.length;
   }
 
-  // Method to return the maximum value in an array of integers
   public static int max(int[] numbers) {
     int maximumValue = numbers[0];
     for (int num : numbers) {
@@ -97,7 +92,6 @@ class Lab1 {
     return maximumValue;
   }
 
-  // Method to return the minimum value in an array of integers
   public static int min(int[] numbers) {
     int minimumValue = numbers[0];
     for (int num : numbers) {
