@@ -4,7 +4,7 @@ import java.util.Queue;
 import java.util.Stack;
 
 // Lab 2 - Lists, Stacks, and Queues
-// Your Name: 
+// Your Name: Jean D King 
 // Notes: The instructions are found in comments through the code starting with "Step n"
 //        Please leave the comments and add your code just after the comment.
 //        Use the examples in the book to complete the lab.
