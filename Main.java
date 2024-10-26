@@ -1,130 +1,58 @@
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
-
-// Lab 2 - Lists, Stacks, and Queues
-// Your Name: Jean D King 
-// Notes: The instructions are found in comments through the code starting with "Step n"
-//        Please leave the comments and add your code just after the comment.
-//        Use the examples in the book to complete the lab.
-
-class Main {
+public class Main {
   public static void main(String[] args) {
-    Lab2 lab = new Lab2();
-    // Comment/Uncomment the following 3 method calls as you work on each method.
-    // No code should be added to the main method. All of your code will go into the methods in Lab2.
-    lab.linkedList();
-    lab.queue();
-    lab.stack();
+    String text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    
+    // Best-case scenario: pattern is at the beginning
+    String bestCase = "A";  // Matches at index 0
+    
+    // Initialize startTime for best case
+    long startTime = System.nanoTime();
+    int index = match(text, bestCase);
+    // Initialize endTime for best case
+    long endTime = System.nanoTime();
+    // Calculate elapsedTime for best case
+    long elapsedTime = endTime - startTime;
+    
+    if (index >= 0)
+      System.out.println("Best-case input matched at index " + index);
+    else
+      System.out.println("Best-case input unmatched");
+    System.out.println("Time taken for best case: " + elapsedTime + " nanoseconds");
+    
+    // Worst-case scenario: pattern is at the end
+    String worstCase = "9";  // Matches at the last index of text
+    
+    // Initialize startTime for worst case
+    startTime = System.nanoTime();
+    index = match(text, worstCase);
+    // Initialize endTime for worst case
+    endTime = System.nanoTime();
+    // Calculate elapsedTime for worst case
+    elapsedTime = endTime - startTime;
+    
+    if (index >= 0)
+      System.out.println("Worst-case input matched at index " + index);
+    else
+      System.out.println("Worst-case input unmatched");
+    System.out.println("Time taken for worst case: " + elapsedTime + " nanoseconds");
   }
-}
 
-class Lab2 {
-  public void linkedList() {
-    
-        // 1. Create a LinkedList<String> object called progLanguages
-
-    LinkedList<String> progLanguages = new LinkedList<>();
-   
-
-
-    // 2. Add elements to progLanguages: "Java", "Python", "JavaScript", "C++"
-    
-    progLanguages.add("Java");
-    
-    progLanguages.add("Python");
-    progLanguages.add("JavaScript");
-    progLanguages.add("C++");
-
-    // 3. Remove the element "C++" from the list using .remove()
-    progLanguages.remove("C++");
-
-    // 4. Add an element "HTML" at index 2.
-    progLanguages.add(2, "HTML");
-
-    // 5. Iterate over progLanguages and use println() to output each element. You must create an Iterator<string> and use hasNext(), and next() similar to the example in our book.
-    Iterator<String> iterator = progLanguages.iterator();
-    while (iterator.hasNext()) {
-      System.out.println(iterator.next());
-    }  
-  }
-  
-  public void queue() {
-    // 6. Create a Queue<String> called q
-    Queue<String> q = new LinkedList<>();
-
-
-    // 7. Add 5 first names to q.
-    q.add("Jack Daniels");
-    q.add("John Doe");
-    q.add("Kendricl Lamar");
-    q.add("Dave Chapelle");
-    q.add("Bob Marley");
-
-    // 8. Uncomment the following line
-    //System.out.println("Elements of queue: " + q);
-    System.out.println("Elements of queue: " + q);
-
-    // 9. Remove the head of the queue and assign it to a String variable removedElement.
-    //    Display the value of "Removed element: " + removedElement
-    String removedElement = q.remove();
-    System.out.println("Removed element: " + removedElement);
-
-    // 10. View the head of the queue using peek(). Output it's value.
-    System.out.println("Head of queue: " + q.peek());
-
-    // 11. Using for(String element : q), output all of the values in the queue
-    for (String element : q) {
-      System.out.println("Queue element: " + element);
+  // Return the index of the first match. -1 otherwise.
+  public static int match(String text, String pattern) {
+    for (int i = 0; i < text.length() - pattern.length() + 1; i++) {
+      if (isMatched(i, text, pattern))
+        return i;
     }
-
-    
+    return -1;
   }
-
-  public void stack() {
-    // 12. Create a Stack<String> called bookStack
-    Stack<String> bookStack = new Stack<>();
-
-    // 13. Push the following book titles onto bookStack: "Clean Code", "Design Patterns", "Pragmatic Programmer"
-    bookStack.push("Clean Code");
-    bookStack.push("Design Patterns");
-    bookStack.push("Pragmatic Programmer");
-
-    // 14. pop() 1 book off the stack. Display it's value
-    String poppedBook = bookStack.pop();
-    System.out.println("Popped book: " + poppedBook);
-
-    // 15. Use the peek() method to view the top book on the stack
-    System.out.println("Top book on stack: " + bookStack.peek());
-
-    // 16. push() "Web DB Technologies" onto the stack
-    bookStack.push("Web DB Technologies");
-
-
-    // 17. Use the peek() method to view the top book on the stack
-    System.out.println("Top book after pushing new book: " + bookStack.peek());
-
-    // 18. Search for "Design Patterns" in the stack. Display the results of the search.
-    int position = bookStack.search("Design Patterns");
-    if (position != -1) {
-      System.out.println("\"Design Patterns\" found at position: " + position);
-    } else {
-      System.out.println("\"Design Patterns\" not found in the stack.");
-    
+	
+  // Test if pattern matches text starting at index i
+  private static boolean isMatched(int i, String text, String pattern) {
+    for (int k = 0; k < pattern.length(); k++) {
+      if (pattern.charAt(k) != text.charAt(i + k)) {
+        return false;
+      }
     }
-
-    // 19. Call empty(). Output the results
-    boolean isEmpty = bookStack.empty();
-    System.out.println("Is the stack empty? " + isEmpty);
-
-    // 20. Print the titles of all of the books on the stack
-    System.out.println("Books in the stack:");
-    for (String book : bookStack) {
-      System.out.println(book);
-    }
-    
+    return true;
   }
-
-  
 }
